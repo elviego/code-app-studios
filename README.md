@@ -54,6 +54,24 @@ App Dev Studio
 
 ## Getting Started
 
+### Install Claude Code
+
+```bash
+npm install -g @anthropic-ai/claude-code
+```
+
+Requires Node.js 18+. Sign in with your Anthropic account on first run.
+
+### Install OpenAI Codex CLI
+
+```bash
+npm install -g @openai/codex
+```
+
+Requires Node.js 22+. Set your API key: `export OPENAI_API_KEY=your-key`
+
+---
+
 ### With Claude Code
 
 ```bash
