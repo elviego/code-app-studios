@@ -83,6 +83,12 @@ claude .
 
 The `.claude/` directory and `CLAUDE.md` are already committed — it works immediately.
 
+Once inside Claude Code, start the studio:
+
+```
+/start
+```
+
 ### With OpenAI (Codex CLI)
 
 ```bash
@@ -90,6 +96,12 @@ git clone https://github.com/elviego/code-app-studios.git my-app
 cd my-app
 codex
 # AGENTS.md is already committed — it works immediately
+```
+
+Once inside Codex, start the studio:
+
+```
+/start
 ```
 
 ### With OpenAI Assistants API
