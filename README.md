@@ -98,11 +98,13 @@ codex
 # AGENTS.md is already committed — it works immediately
 ```
 
-Once inside Codex, start the studio:
+Once inside Codex, start the studio by telling it what you want to build:
 
 ```
-/start
+I want to build a [your app idea]. Help me get started.
 ```
+
+The studio will route you to the right workflow automatically via `AGENTS.md`.
 
 ### With OpenAI Assistants API
 
