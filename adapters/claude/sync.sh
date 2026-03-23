@@ -12,7 +12,7 @@ CLAUDE_DIR="$ROOT_DIR/.claude"
 echo "🔄 Syncing Claude Code adapter..."
 
 # ── Directories ───────────────────────────────────────────────────────────────
-mkdir -p "$CLAUDE_DIR/agents" "$CLAUDE_DIR/skills" "$CLAUDE_DIR/rules" \
+mkdir -p "$CLAUDE_DIR/agents" "$CLAUDE_DIR/commands" "$CLAUDE_DIR/rules" \
          "$CLAUDE_DIR/hooks" "$CLAUDE_DIR/docs"
 
 # ── Read model map from config ────────────────────────────────────────────────
@@ -69,12 +69,11 @@ $(cat "$agent_file")
 AGENTEOF
 done
 
-# ── Generate .claude/skills/ ──────────────────────────────────────────────────
-echo "  → Generating skills..."
+# ── Generate .claude/commands/ ────────────────────────────────────────────────
+echo "  → Generating commands..."
 for workflow_file in "$CORE/workflows/"*.md; do
   skill_name=$(basename "$workflow_file" .md)
-  mkdir -p "$CLAUDE_DIR/skills/$skill_name"
-  cp "$workflow_file" "$CLAUDE_DIR/skills/$skill_name/prompt.md"
+  cp "$workflow_file" "$CLAUDE_DIR/commands/$skill_name.md"
 done
 
 # ── Copy rules ────────────────────────────────────────────────────────────────
