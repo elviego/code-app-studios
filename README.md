@@ -57,7 +57,7 @@ App Dev Studio
 ### With Claude Code
 
 ```bash
-git clone https://github.com/elviego/app-dev-studio.git my-app
+git clone https://github.com/elviego/code-app-studios.git my-app
 cd my-app
 claude .
 # Then type: /start
@@ -68,7 +68,7 @@ The `.claude/` directory and `CLAUDE.md` are already committed — it works imme
 ### With OpenAI (Codex CLI)
 
 ```bash
-git clone https://github.com/elviego/app-dev-studio.git my-app
+git clone https://github.com/elviego/code-app-studios.git my-app
 cd my-app
 codex
 # AGENTS.md is already committed — it works immediately
