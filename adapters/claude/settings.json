@@ -1,0 +1,88 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git:*)",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(yarn:*)",
+      "Bash(pnpm:*)",
+      "Bash(node:*)",
+      "Bash(python:*)",
+      "Bash(pip:*)",
+      "Bash(pip3:*)",
+      "Bash(poetry:*)",
+      "Bash(go:*)",
+      "Bash(flutter:*)",
+      "Bash(dart:*)",
+      "Bash(docker:*)",
+      "Bash(docker-compose:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(touch:*)",
+      "Bash(chmod:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(cat:*)",
+      "Bash(echo:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(sed:*)",
+      "Bash(awk:*)",
+      "Bash(curl:*)",
+      "Bash(open:*)",
+      "Bash(which:*)",
+      "Bash(env:*)",
+      "Bash(export:*)",
+      "Edit(/.claude/skills/release-notes/**)",
+      "Edit(/.claude/skills/onboarding/**)",
+      "Edit(/.claude/skills/team-frontend/**)",
+      "Edit(/.claude/skills/team-backend/**)",
+      "Edit(/.claude/skills/team-mobile/**)",
+      "Edit(/.claude/skills/team-devops/**)",
+      "Edit(/.claude/skills/prototype/**)"
+    ],
+    "deny": [
+      "Bash(git push --force:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(rm -rf:*)",
+      "Bash(DROP TABLE:*)",
+      "Bash(git push origin main --force:*)",
+      "Bash(git push origin master --force:*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "bash .claude/hooks/session-start.sh"
+      }
+    ],
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "bash .claude/hooks/log-agent.sh \"$CLAUDE_TOOL_NAME\" \"$CLAUDE_TOOL_INPUT\"",
+        "matcher": "Agent"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "bash .claude/hooks/validate-types.sh \"$CLAUDE_TOOL_RESULT\"",
+        "matcher": "Write|Edit"
+      }
+    ],
+    "PreCompact": [
+      {
+        "type": "command",
+        "command": "bash .claude/hooks/pre-compact.sh"
+      }
+    ],
+    "Stop": [
+      {
+        "type": "command",
+        "command": "bash .claude/hooks/session-stop.sh"
+      }
+    ]
+  },
+  "statusLine": "bash .claude/statusline.sh"
+}

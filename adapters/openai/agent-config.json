@@ -1,0 +1,73 @@
+{
+  "_comment": "OpenAI adapter config. Maps agent names to OpenAI models and tools. Edit to change model assignments.",
+  "models": {
+    "tier1": "gpt-4o",
+    "tier2": "gpt-4o",
+    "tier3": "gpt-4o-mini",
+    "tier3-fast": "gpt-4o-mini"
+  },
+  "_tools_note": "OpenAI tool names differ from Claude. file_search = file reading. code_interpreter = code execution.",
+  "agents": {
+    "product-director": {
+      "tier": "tier1",
+      "tools": ["file_search"]
+    },
+    "technical-director": {
+      "tier": "tier1",
+      "tools": ["file_search", "code_interpreter"]
+    },
+    "project-manager": {
+      "tier": "tier1",
+      "tools": ["file_search"]
+    },
+    "frontend-lead": {
+      "tier": "tier2",
+      "tools": ["file_search", "code_interpreter"]
+    },
+    "backend-lead": {
+      "tier": "tier2",
+      "tools": ["file_search", "code_interpreter"]
+    },
+    "mobile-lead": {
+      "tier": "tier2",
+      "tools": ["file_search", "code_interpreter"]
+    },
+    "devops-lead": {
+      "tier": "tier2",
+      "tools": ["file_search", "code_interpreter"]
+    },
+    "design-lead": {
+      "tier": "tier2",
+      "tools": ["file_search"]
+    },
+    "qa-lead": {
+      "tier": "tier2",
+      "tools": ["file_search", "code_interpreter"]
+    },
+    "security-lead": {
+      "tier": "tier2",
+      "tools": ["file_search"]
+    },
+    "data-lead": {
+      "tier": "tier2",
+      "tools": ["file_search", "code_interpreter"]
+    },
+    "react-specialist": { "tier": "tier3", "tools": ["file_search", "code_interpreter"] },
+    "nextjs-specialist": { "tier": "tier3", "tools": ["file_search", "code_interpreter"] },
+    "vue-specialist": { "tier": "tier3", "tools": ["file_search", "code_interpreter"] },
+    "nodejs-specialist": { "tier": "tier3", "tools": ["file_search", "code_interpreter"] },
+    "python-specialist": { "tier": "tier3", "tools": ["file_search", "code_interpreter"] },
+    "springboot-specialist": { "tier": "tier3", "tools": ["file_search", "code_interpreter"] },
+    "database-specialist": { "tier": "tier3", "tools": ["file_search", "code_interpreter"] },
+    "api-specialist": { "tier": "tier3", "tools": ["file_search"] },
+    "auth-specialist": { "tier": "tier3", "tools": ["file_search"] },
+    "react-native-specialist": { "tier": "tier3", "tools": ["file_search", "code_interpreter"] },
+    "flutter-specialist": { "tier": "tier3", "tools": ["file_search", "code_interpreter"] },
+    "ios-specialist": { "tier": "tier3", "tools": ["file_search", "code_interpreter"] },
+    "android-specialist": { "tier": "tier3", "tools": ["file_search", "code_interpreter"] },
+    "devops-specialist": { "tier": "tier3", "tools": ["file_search", "code_interpreter"] },
+    "performance-specialist": { "tier": "tier3", "tools": ["file_search"] },
+    "accessibility-specialist": { "tier": "tier3", "tools": ["file_search"] },
+    "qa-engineer": { "tier": "tier3-fast", "tools": ["file_search", "code_interpreter"] }
+  }
+}

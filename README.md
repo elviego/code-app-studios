@@ -1,97 +1,143 @@
-# Claude Code App Studios
+# App Dev Studio
 
-> A structured, multi-agent application development framework for Claude Code — build web apps, mobile apps, and APIs with a full professional studio behind you.
+> A structured, multi-agent application development framework — build web apps, mobile apps, and APIs with a full professional studio behind you. Works with **Claude Code** and **OpenAI**.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Claude Code](https://img.shields.io/badge/Claude-Code-orange)](https://claude.ai/code)
-[![Version](https://img.shields.io/badge/version-1.0.0-green)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.0.0-green)](CHANGELOG.md)
 
 ---
 
 ## What Is This?
 
-Claude Code App Studios transforms a single Claude Code session into a **structured multi-agent application development studio**. Instead of one general-purpose assistant, you get:
+App Dev Studio transforms an AI coding session into a **structured multi-agent application development studio**. Instead of one general-purpose assistant, you get:
 
-- **40+ specialized agents** organized into a professional hierarchy
-- **33 slash commands** covering every phase of app development
-- **8 automated hooks** for quality control and session management
+- **28+ specialized agents** organized into a professional hierarchy
+- **33 workflows** covering every phase of app development
 - **9 path-scoped rules** enforcing domain-specific coding standards
-- **Support for all major stacks** — React, Next.js, Vue, Node.js, Python, Flutter, React Native, and more
+- **Support for all major stacks** — React, Next.js, Vue, Node.js, Python, Java Spring Boot, Flutter, React Native, iOS, Android, and more
+- **Two implementations**: Claude Code and OpenAI
 
 **You stay in control.** Agents propose, you approve. Nothing gets written without your explicit sign-off.
+
+---
+
+## Architecture
+
+```
+App Dev Studio
+├── core/                   ← Platform-agnostic source of truth
+│   ├── agents/             ← 28 role definitions (no platform-specific headers)
+│   ├── workflows/          ← 33 workflow prompts (/start, /prd, /code-review, ...)
+│   ├── rules/              ← 9 coding standards (frontend, backend, security, ...)
+│   └── templates/          ← Document templates (PRD, ADR, API spec, sprint)
+│
+├── adapters/
+│   ├── claude/             ← Claude Code adapter
+│   │   ├── agent-config.json   ← Maps agents to Claude models/tools
+│   │   ├── settings.json       ← Hooks and permissions config
+│   │   ├── hooks/              ← Lifecycle shell scripts
+│   │   └── sync.sh             ← Generates .claude/ from core/
+│   └── openai/             ← OpenAI adapter
+│       ├── agent-config.json   ← Maps agents to GPT models/tools
+│       ├── agents-main.md      ← AGENTS.md header template
+│       └── sync.sh             ← Generates AGENTS.md + .openai/ from core/
+│
+├── .claude/                ← Generated: Claude Code config (committed)
+├── CLAUDE.md               ← Generated: Claude Code entry point
+├── AGENTS.md               ← Generated: OpenAI entry point
+└── sync.sh                 ← Regenerate both implementations
+```
+
+> **Edit `core/`, then run `bash sync.sh` to update both implementations.**
+
+---
+
+## Getting Started
+
+### With Claude Code
+
+```bash
+git clone https://github.com/your-username/app-dev-studio.git my-app
+cd my-app
+claude .
+# Then type: /start
+```
+
+The `.claude/` directory and `CLAUDE.md` are already committed — it works immediately.
+
+### With OpenAI (Codex CLI)
+
+```bash
+git clone https://github.com/your-username/app-dev-studio.git my-app
+cd my-app
+codex
+# AGENTS.md is already committed — it works immediately
+```
+
+### With OpenAI Assistants API
+
+The file `.openai/assistants/assistants.json` contains configuration for creating all 28 studio agents as OpenAI Assistants. Use the OpenAI SDK to load and create them:
+
+```javascript
+import OpenAI from 'openai';
+import config from './.openai/assistants/assistants.json';
+
+const client = new OpenAI();
+
+for (const assistant of config.assistants) {
+  await client.beta.assistants.create({
+    name: assistant.name,
+    model: assistant.model,
+    instructions: assistant.instructions,
+    tools: assistant.tools,
+  });
+}
+```
 
 ---
 
 ## Studio Structure
 
 ```
-Product Director
-├── Technical Director
-│   ├── Frontend Lead → React, Vue, Next.js, CSS, Performance, Accessibility specialists
-│   ├── Backend Lead  → Node.js, Python, Go, Database, API, Auth specialists
-│   ├── Mobile Lead   → React Native, Flutter, iOS, Android specialists
-│   └── DevOps Lead   → CI/CD, Docker, Cloud, Monitoring specialists
-├── Project Manager
-│   ├── QA Lead       → QA Engineer, E2E, Security specialists
-│   └── Security Lead → Security specialist
-└── Design Lead       → UI Designer, UX Researcher
+Product Director ──────────────── Vision, roadmap, user value
+Technical Director ─────────────── Architecture, stack decisions
+Project Manager ────────────────── Sprints, milestones, scope
+│
+├── Frontend Lead ────────────────── Component strategy, DX
+│   ├── React Specialist
+│   ├── Next.js Specialist
+│   └── Vue Specialist
+│
+├── Backend Lead ─────────────────── API design, data modeling
+│   ├── Node.js Specialist
+│   ├── Python Specialist
+│   └── Spring Boot Specialist (Java)
+│
+├── Mobile Lead ──────────────────── Cross-platform & native strategy
+│   ├── React Native Specialist
+│   ├── Flutter Specialist
+│   ├── iOS Specialist (Swift)
+│   └── Android Specialist (Kotlin)
+│
+├── DevOps Lead ──────────────────── CI/CD, infra, monitoring
+│   └── DevOps Specialist
+│
+├── Design Lead ──────────────────── UX, design systems
+│
+├── QA Lead ──────────────────────── Testing strategy, quality gates
+│   └── QA Engineer
+│
+└── Security Lead ────────────────── Threat modeling, compliance
+    ├── Database Specialist
+    ├── API Specialist
+    ├── Auth Specialist
+    ├── Performance Specialist
+    └── Accessibility Specialist
 ```
-
-### Tier 1 — Directors (claude-opus-4-6)
-Strategic vision, architecture, and project leadership.
-
-### Tier 2 — Department Leads (claude-sonnet-4-6)
-Domain experts owning their discipline end-to-end.
-
-### Tier 3 — Specialists (claude-sonnet-4-6 / claude-haiku-4-5-20251001)
-Execution experts for specific technologies and tasks.
 
 ---
 
-## Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/your-username/claude-code-app-studios.git my-app
-cd my-app
-```
-
-### 2. Open in Claude Code
-
-```bash
-claude .
-```
-
-### 3. Run `/start`
-
-The studio will ask you questions and route you to the right workflow based on where you are:
-- Starting a new app from scratch
-- Joining an existing project
-- Recovering from technical debt
-- Planning a new feature
-
-### 4. Choose your stack
-
-```
-/setup-stack
-```
-
-Select your frontend framework, backend, database, and infrastructure. Your choices are saved to `.claude/docs/stack-config.md`.
-
-### 5. Build
-
-Follow the workflow that matches your phase:
-
-**Planning** → `/brainstorm` → `/prd` → `/user-stories` → `/map-features`
-**Design** → `/db-schema` → `/api-design` → `/architecture-decision`
-**Development** → `/prototype` → `/code-review` → `/sprint-plan`
-**Quality** → `/security-audit` → `/performance-audit` → `/accessibility-audit`
-**Launch** → `/deploy-checklist` → `/launch-checklist` → `/release-notes`
-
----
-
-## Slash Commands Reference
+## Workflows (Slash Commands)
 
 | Command | Phase | Description |
 |---------|-------|-------------|
@@ -110,9 +156,9 @@ Follow the workflow that matches your phase:
 | `/tech-debt` | Development | Technical debt audit |
 | `/bug-report` | Development | Bug analysis and resolution |
 | `/hotfix` | Development | Emergency fix protocol |
-| `/security-audit` | Quality | Security and vulnerability review |
+| `/security-audit` | Quality | OWASP Top 10 security review |
 | `/performance-audit` | Quality | Performance analysis |
-| `/accessibility-audit` | Quality | WCAG compliance review |
+| `/accessibility-audit` | Quality | WCAG 2.1 AA compliance review |
 | `/design-review` | Quality | UX/UI critique |
 | `/test-plan` | Quality | Testing strategy |
 | `/sprint-plan` | Planning | Sprint planning |
@@ -133,56 +179,60 @@ Follow the workflow that matches your phase:
 
 ## Technology Stack Support
 
-### Frontend
-- **React** (CRA, Vite) · **Next.js** (App Router, Pages) · **Vue 3** (Vite, Nuxt) · **Angular** · **SvelteKit** · **Astro**
-- Styling: Tailwind CSS · CSS Modules · styled-components · Sass
-
-### Backend
-- **Node.js** (Express, Fastify, NestJS) · **Python** (FastAPI, Django, Flask) · **Go** (Gin, Echo) · **Ruby on Rails**
-
-### Mobile
-- **React Native** (Expo, bare) · **Flutter** · **Swift** (iOS) · **Kotlin** (Android)
-
-### Databases
-- **SQL**: PostgreSQL · MySQL · SQLite · PlanetScale
-- **NoSQL**: MongoDB · Redis · DynamoDB
-- **BaaS**: Supabase · Firebase · Appwrite
-
-### Infrastructure
-- **Cloud**: AWS · GCP · Azure
-- **PaaS**: Vercel · Railway · Fly.io · Render · Netlify
-- **Containers**: Docker · Kubernetes · Docker Compose
+| Layer | Options |
+|-------|---------|
+| **Frontend** | React, Next.js, Vue 3 / Nuxt, Angular, SvelteKit, Astro |
+| **Backend** | Node.js / Express / NestJS / Fastify, FastAPI, Django, Spring Boot (Java), Go / Gin |
+| **Mobile** | React Native (Expo), Flutter (Dart), Swift (iOS), Kotlin (Android) |
+| **Database (SQL)** | PostgreSQL, MySQL, SQLite, PlanetScale |
+| **Database (NoSQL)** | MongoDB, Redis, DynamoDB, Firebase |
+| **BaaS** | Supabase, Firebase, Appwrite |
+| **Cloud** | AWS, GCP, Azure |
+| **PaaS** | Vercel, Railway, Fly.io, Render, Netlify |
+| **Containers** | Docker, Docker Compose, Kubernetes |
 
 ---
 
-## Automated Hooks
+## Customizing the Studio
 
-| Hook | Trigger | Purpose |
-|------|---------|---------|
-| `session-start.sh` | Session start | Load sprint context, detect config gaps |
-| `detect-gaps.sh` | Session start | Flag missing tests, docs, types |
-| `validate-commit.sh` | Pre-commit | Check for secrets, console.logs, TODOs |
-| `validate-push.sh` | Pre-push | Alert on protected branch pushes |
-| `validate-types.sh` | Post file write | TypeScript/type checking |
-| `pre-compact.sh` | Pre-compact | Preserve session state |
-| `session-stop.sh` | Session end | Summarize session, update logs |
-| `log-agent.sh` | Agent invocation | Maintain audit trail |
+### Changing agent models
+
+**Claude:**
+Edit `adapters/claude/agent-config.json` → update `models.tier1/tier2/tier3`
+
+**OpenAI:**
+Edit `adapters/openai/agent-config.json` → update `models.tier1/tier2/tier3`
+
+Then run `bash sync.sh` to regenerate.
+
+### Adding a new agent
+
+1. Create `core/agents/my-specialist.md` with the agent's system prompt
+2. Add an entry to `adapters/claude/agent-config.json` and `adapters/openai/agent-config.json`
+3. Run `bash sync.sh`
+
+### Adding a new workflow
+
+1. Create `core/workflows/my-workflow.md` with the workflow prompt
+2. Run `bash sync.sh`
+3. Document it in this README
+
+### Adding a new coding rule
+
+1. Create `core/rules/my-rule.md` (include a `globs:` frontmatter block)
+2. Run `bash sync.sh`
 
 ---
 
-## Path-Scoped Rules
+## Collaborative Workflow Principle
 
-| Rule File | Applies To | Enforces |
-|-----------|-----------|----------|
-| `frontend-code.md` | `src/components/**`, `src/pages/**` | Component patterns, no business logic in UI |
-| `backend-code.md` | `src/api/**`, `src/server/**` | Service layer, error handling |
-| `mobile-code.md` | `mobile/**`, `app/**` | Platform-specific patterns |
-| `api-code.md` | `src/routes/**`, `src/handlers/**` | REST/GraphQL conventions |
-| `database.md` | `src/models/**`, `migrations/**` | Schema patterns, migration safety |
-| `testing.md` | `**/*.test.*`, `**/*.spec.*` | Real integrations, no over-mocking |
-| `security.md` | `src/auth/**`, `src/middleware/**` | Auth patterns, input validation |
-| `devops.md` | `Dockerfile`, `.github/**`, `infra/**` | Container patterns, IaC |
-| `accessibility.md` | `src/components/**` | ARIA, semantic HTML, keyboard nav |
+The studio enforces **propose-then-approve** for every significant decision:
+
+1. **Questions First** — Agents ask before assuming
+2. **Options Always** — 2–4 alternatives with documented trade-offs
+3. **You Decide** — Explicit decision required before proceeding
+4. **Draft, Don't Write** — Code shown in chat, not written to disk
+5. **Approval Gate** — Explicit sign-off required before any file is created
 
 ---
 
@@ -191,49 +241,29 @@ Follow the workflow that matches your phase:
 ```
 my-app/
 ├── src/
-│   ├── components/        # UI components (frontend)
-│   ├── pages/ or app/     # Route-level components / App Router
+│   ├── components/        # UI components
+│   ├── pages/ or app/     # Route-level components
 │   ├── api/               # API routes
 │   ├── server/            # Backend server code
 │   ├── models/            # Database models / schemas
 │   ├── services/          # Business logic
-│   ├── hooks/             # Custom React hooks
+│   ├── hooks/             # Custom hooks
 │   ├── lib/               # Shared utilities
-│   ├── types/             # TypeScript types
-│   └── styles/            # Global styles
-├── mobile/                # Mobile app (React Native / Flutter)
+│   └── types/             # TypeScript types
+├── mobile/                # Mobile app (if applicable)
 ├── infra/                 # Infrastructure as code
 ├── migrations/            # Database migrations
-├── tests/
-│   ├── unit/
-│   ├── integration/
-│   └── e2e/
-├── design/                # Design docs, wireframes
+├── tests/                 # Test suites
+├── design/                # PRDs, ADRs, API specs, feature maps
 ├── docs/                  # Technical documentation
-├── .github/               # CI/CD workflows
-├── production/            # Session state (git-ignored)
-└── .claude/               # Studio configuration
+└── production/            # Session state (git-ignored)
 ```
-
----
-
-## Collaborative Workflow Principle
-
-The studio enforces a **propose-then-approve** model for every significant decision:
-
-1. **Questions First** — Agents ask before assuming
-2. **Options Always** — 2–4 alternatives with documented trade-offs
-3. **You Decide** — Explicit decision required before proceeding
-4. **Draft, Don't Write** — Code shown in chat, not written to disk
-5. **Approval Gate** — Explicit "write it" before any file is created
-
-This prevents the most common AI coding failure modes: wrong assumptions baked into 200 lines of code, over-engineered solutions, and hidden complexity.
 
 ---
 
 ## License
 
-MIT — See [LICENSE](LICENSE)
+MIT
 
 ---
 

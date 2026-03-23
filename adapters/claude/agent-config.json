@@ -1,0 +1,151 @@
+{
+  "_comment": "Claude Code adapter config. Maps agent names to Claude models and tools. Edit this to change model assignments.",
+  "models": {
+    "tier1": "claude-opus-4-6",
+    "tier2": "claude-sonnet-4-6",
+    "tier3": "claude-sonnet-4-6",
+    "tier3-fast": "claude-haiku-4-5-20251001"
+  },
+  "agents": {
+    "product-director": {
+      "tier": "tier1",
+      "description": "Use when defining product vision, evaluating feature requests, setting roadmap priorities, or resolving product strategy questions. The strategic voice for 'what to build and why.'",
+      "tools": ["Read", "Glob", "Grep", "WebSearch", "WebFetch"]
+    },
+    "technical-director": {
+      "tier": "tier1",
+      "description": "Use when making architecture decisions, choosing technology stacks, defining engineering standards, or resolving complex technical trade-offs. The strategic technical authority.",
+      "tools": ["Read", "Glob", "Grep", "WebSearch", "WebFetch"]
+    },
+    "project-manager": {
+      "tier": "tier1",
+      "description": "Use when planning sprints, estimating work, managing scope, tracking milestones, or coordinating across teams. The operational backbone of the studio.",
+      "tools": ["Read", "Glob", "Grep"]
+    },
+    "frontend-lead": {
+      "tier": "tier2",
+      "description": "Use when making frontend architecture decisions, designing component systems, setting frontend standards, or resolving UI/UX technical trade-offs.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "backend-lead": {
+      "tier": "tier2",
+      "description": "Use when making backend architecture decisions, designing APIs, setting server-side patterns, or resolving data modeling trade-offs.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "mobile-lead": {
+      "tier": "tier2",
+      "description": "Use when making mobile architecture decisions, choosing cross-platform vs native, designing mobile UX patterns, or setting mobile development standards.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "devops-lead": {
+      "tier": "tier2",
+      "description": "Use when designing CI/CD pipelines, choosing infrastructure, planning deployments, setting up monitoring, or resolving infrastructure trade-offs.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "design-lead": {
+      "tier": "tier2",
+      "description": "Use when making UX strategy decisions, designing product flows, planning user research, or building design systems. The voice of the user in technical conversations.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep"]
+    },
+    "qa-lead": {
+      "tier": "tier2",
+      "description": "Use when building test strategies, defining quality gates, planning QA coverage, or triaging bugs. Owns the quality bar for every release.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "security-lead": {
+      "tier": "tier2",
+      "description": "Use when assessing security posture, threat modeling, reviewing authentication flows, addressing vulnerabilities, or planning security testing. The security authority.",
+      "tools": ["Read", "Glob", "Grep", "WebSearch"]
+    },
+    "data-lead": {
+      "tier": "tier2",
+      "description": "Use when designing database schemas, planning data pipelines, building analytics systems, or making data architecture decisions.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "react-specialist": {
+      "tier": "tier3",
+      "description": "Use for React-specific implementation: component patterns, hooks, context, state management with Zustand/Redux, React Query integration, and React best practices.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "nextjs-specialist": {
+      "tier": "tier3",
+      "description": "Use for Next.js-specific implementation: App Router, Server Components, Server Actions, data fetching patterns, routing, middleware, and Next.js deployment.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "vue-specialist": {
+      "tier": "tier3",
+      "description": "Use for Vue 3 and Nuxt 3 implementation: Composition API, composables, Pinia state management, Vue Router, and Vue ecosystem best practices.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "nodejs-specialist": {
+      "tier": "tier3",
+      "description": "Use for Node.js backend implementation: Express, Fastify, NestJS, REST API design, middleware, authentication, and Node.js ecosystem patterns.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "python-specialist": {
+      "tier": "tier3",
+      "description": "Use for Python backend implementation: FastAPI, Django, Flask, async patterns, Pydantic validation, SQLAlchemy, and Python ecosystem best practices.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "springboot-specialist": {
+      "tier": "tier3",
+      "description": "Use for Java Spring Boot implementation: REST APIs, Spring Data JPA, Spring Security, microservices, Maven/Gradle builds, and Java ecosystem best practices.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "database-specialist": {
+      "tier": "tier3",
+      "description": "Use for database schema design, query optimization, migration writing, index strategy, and database performance analysis.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "api-specialist": {
+      "tier": "tier3",
+      "description": "Use for REST API design, GraphQL schema design, API versioning strategy, OpenAPI specification writing, and API contract review.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep"]
+    },
+    "auth-specialist": {
+      "tier": "tier3",
+      "description": "Use for authentication system design, authorization implementation, session management, OAuth integration, and identity provider setup.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "WebSearch"]
+    },
+    "react-native-specialist": {
+      "tier": "tier3",
+      "description": "Use for React Native implementation: Expo, bare workflow, navigation, native modules, performance optimization, and app store submission.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "flutter-specialist": {
+      "tier": "tier3",
+      "description": "Use for Flutter implementation: Dart, state management with Riverpod/Bloc, widget patterns, platform channels, and Flutter app architecture.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "ios-specialist": {
+      "tier": "tier3",
+      "description": "Use for native iOS implementation: Swift, SwiftUI, UIKit, Combine, Core Data, and iOS-specific platform patterns.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "android-specialist": {
+      "tier": "tier3",
+      "description": "Use for native Android implementation: Kotlin, Jetpack Compose, ViewModel, Room, Coroutines, and Android-specific platform patterns.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "devops-specialist": {
+      "tier": "tier3",
+      "description": "Use for CI/CD pipeline implementation, Docker configuration, GitHub Actions workflows, deployment scripting, and infrastructure automation.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "performance-specialist": {
+      "tier": "tier3",
+      "description": "Use for web performance analysis, Core Web Vitals optimization, bundle size reduction, rendering performance, and API response time improvements.",
+      "tools": ["Read", "Glob", "Grep", "Bash", "WebSearch"]
+    },
+    "accessibility-specialist": {
+      "tier": "tier3",
+      "description": "Use for WCAG compliance reviews, ARIA implementation, keyboard navigation, screen reader testing guidance, and accessible component design.",
+      "tools": ["Read", "Glob", "Grep", "WebSearch"]
+    },
+    "qa-engineer": {
+      "tier": "tier3-fast",
+      "description": "Use for writing unit tests, integration tests, E2E tests, test data setup, and testing strategy execution.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    }
+  }
+}

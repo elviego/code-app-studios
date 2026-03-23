@@ -1,6 +1,11 @@
 # Production state (session logs, sprint notes — local only)
 production/
 
+# Generated implementation outputs (commit these — users clone and go)
+# To regenerate: bash sync.sh
+# .claude/ and CLAUDE.md → committed (Claude Code users work immediately)
+# AGENTS.md and .openai/ → committed (OpenAI users work immediately)
+
 # Environment variables
 .env
 .env.local
