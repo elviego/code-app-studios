@@ -89,6 +89,8 @@ Once inside Claude Code, start the studio:
 /start
 ```
 
+> If `/start` shows as unrecognized, restart Claude Code — it scans `.claude/commands/` on launch.
+
 ### With OpenAI (Codex CLI)
 
 ```bash

@@ -39,45 +39,45 @@ When a user message arrives:
 3. Activate the appropriate agent(s)
 4. Respond **as** that agent with their expertise and collaboration protocol
 
-## Available Commands
+## Available Workflows
 
-Users may type `/command-name` to invoke a workflow:
+Codex CLI has no slash command system. Users trigger workflows by describing what they want in natural language. The table below shows the workflow names and what triggers each one — recognize these intents and respond accordingly.
 
-| Command | Workflow |
-|---------|---------|
-| `/start` | Smart routing — ask questions to understand where they are |
-| `/setup-stack` | Technology stack selection and configuration |
-| `/brainstorm` | Product ideation session |
-| `/prd` | Product Requirements Document |
-| `/user-stories` | User story generation |
-| `/map-features` | Feature scope and dependency mapping |
-| `/api-design` | API contract design (REST/GraphQL) |
-| `/db-schema` | Database schema design |
-| `/architecture-decision` | Architecture Decision Record (ADR) |
-| `/prototype` | Quick prototype session |
-| `/code-review` | Multi-specialist code review |
-| `/security-audit` | OWASP Top 10 security review |
-| `/performance-audit` | Performance analysis and optimization |
-| `/accessibility-audit` | WCAG 2.1 AA compliance review |
-| `/design-review` | UX/UI design critique |
-| `/test-plan` | Testing strategy |
-| `/sprint-plan` | Sprint planning |
-| `/estimate` | Story point estimation |
-| `/milestone-review` | Milestone readiness check |
-| `/tech-debt` | Technical debt audit |
-| `/refactor` | Structured refactoring session |
-| `/bug-report` | Bug analysis and resolution |
-| `/hotfix` | Emergency fix protocol |
-| `/deploy-checklist` | Pre-deployment readiness |
-| `/launch-checklist` | Product launch readiness |
-| `/changelog` | Generate changelog |
-| `/release-notes` | User-facing release notes |
-| `/retrospective` | Sprint retrospective |
-| `/onboarding` | Developer onboarding documentation |
-| `/team-frontend` | Assemble frontend team |
-| `/team-backend` | Assemble backend team |
-| `/team-mobile` | Assemble mobile team |
-| `/team-devops` | Assemble DevOps team |
+| Workflow | Trigger phrases |
+|----------|----------------|
+| **start** | "where do I start", "help me begin", "I want to build", "I'm not sure what to do" |
+| **setup-stack** | "choose my stack", "what tech should I use", "configure the project" |
+| **brainstorm** | "help me brainstorm", "I have an idea", "let's explore" |
+| **prd** | "write a PRD", "define requirements", "product requirements" |
+| **user-stories** | "write user stories", "create stories", "generate stories" |
+| **map-features** | "map the features", "what features do I need", "scope this out" |
+| **api-design** | "design the API", "API contract", "REST endpoints", "GraphQL schema" |
+| **db-schema** | "design the database", "schema design", "data model" |
+| **architecture-decision** | "architecture decision", "ADR", "which approach should I take" |
+| **prototype** | "build a prototype", "quick prototype", "proof of concept" |
+| **code-review** | "review my code", "code review", "check this code" |
+| **security-audit** | "security review", "check for vulnerabilities", "OWASP" |
+| **performance-audit** | "performance review", "optimize performance", "slow" |
+| **accessibility-audit** | "accessibility review", "WCAG", "a11y" |
+| **design-review** | "review the design", "UX review", "UI feedback" |
+| **test-plan** | "testing strategy", "test plan", "how should I test this" |
+| **sprint-plan** | "plan the sprint", "sprint planning", "what should we work on" |
+| **estimate** | "estimate this", "story points", "how long will this take" |
+| **milestone-review** | "milestone review", "are we ready", "gate check" |
+| **tech-debt** | "tech debt", "code quality", "what needs cleaning up" |
+| **refactor** | "refactor this", "clean this up", "restructure" |
+| **bug-report** | "I found a bug", "something is broken", "debug this" |
+| **hotfix** | "production is down", "emergency fix", "hotfix" |
+| **deploy-checklist** | "ready to deploy", "deployment checklist", "pre-deploy" |
+| **launch-checklist** | "ready to launch", "launch checklist", "going live" |
+| **changelog** | "generate changelog", "what changed", "release changelog" |
+| **release-notes** | "write release notes", "user-facing changes" |
+| **retrospective** | "retrospective", "retro", "how did the sprint go" |
+| **onboarding** | "onboarding docs", "new developer", "how does this project work" |
+| **team-frontend** | "frontend team", "assemble frontend", "UI team" |
+| **team-backend** | "backend team", "server team", "API team" |
+| **team-mobile** | "mobile team", "app team", "iOS/Android team" |
+| **team-devops** | "devops team", "infra team", "deployment team" |
 
 ## Technology Stack Support
 
@@ -89,7 +89,7 @@ Users may type `/command-name` to invoke a workflow:
 
 ---
 
-*Begin every session by waiting for the user's first message. If they seem unsure where to start, offer to run /start.*
+*Begin every session by waiting for the user's first message. If they seem unsure where to start, ask them what they want to build and route them to the right workflow.*
 
 
 ---
