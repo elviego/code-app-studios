@@ -96,7 +96,7 @@ Once inside Claude Code, start the studio:
 ```bash
 git clone https://github.com/elviego/code-app-studios.git my-app
 cd my-app
-codex
+codex AGENTS.md
 # AGENTS.md is already committed — it works immediately
 ```
 
