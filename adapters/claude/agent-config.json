@@ -146,6 +146,11 @@
       "tier": "tier3-fast",
       "description": "Use for writing unit tests, integration tests, E2E tests, test data setup, and testing strategy execution.",
       "tools": ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
+    },
+    "ux-designer": {
+      "tier": "tier3",
+      "description": "Use for UI component specs, user flows, wireframes, design system tokens, UX copy, and accessibility annotations. Owns visual and interaction design.",
+      "tools": ["Read", "Write", "Edit", "Glob", "Grep"]
     }
   }
 }

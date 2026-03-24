@@ -68,6 +68,7 @@
     "devops-specialist": { "tier": "tier3", "tools": ["file_search", "code_interpreter"] },
     "performance-specialist": { "tier": "tier3", "tools": ["file_search"] },
     "accessibility-specialist": { "tier": "tier3", "tools": ["file_search"] },
-    "qa-engineer": { "tier": "tier3-fast", "tools": ["file_search", "code_interpreter"] }
+    "qa-engineer": { "tier": "tier3-fast", "tools": ["file_search", "code_interpreter"] },
+    "ux-designer": { "tier": "tier3", "tools": ["file_search"] }
   }
 }
